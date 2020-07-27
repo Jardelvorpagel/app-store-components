@@ -1,9 +1,11 @@
 interface Specification {
+  originalName: string
   name: string
   values: [string]
 }
 
 interface SpecificationGroup {
+  originalName: string
   name: string
   specifications: Specification[]
 }

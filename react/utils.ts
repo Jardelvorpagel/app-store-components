@@ -4,10 +4,10 @@ export const getSpecification = (
   specificationGroups?: SpecificationGroup[]
 ) => {
   const group = specificationGroups?.find(
-    specificationGroup => specificationGroup.name === groupName
+    specificationGroup => specificationGroup.originalName === groupName
   )
   const specificationTarget = group?.specifications.find(
-    specification => specification.name === specificationName
+    specification => specification.originalName === specificationName
   )
   return specificationTarget
 }
