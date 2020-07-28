@@ -14,7 +14,6 @@
     "vtex.product-context": "0.x",
     "vtex.css-handles": "0.x"
   },
-  "registries": ["smartcheckout"],
   "policies": [],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
