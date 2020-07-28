@@ -24,7 +24,7 @@ const SpecificationText: FunctionComponent<Props> = ({
     product?.specificationGroups
   )
   const value = specification?.values[0] ?? ''
-  const paragraphs = value.split(/\\n/)
+  const paragraphs = value.split('\n')
   return (
     <div className={`${handles.paragraphContainer}`}>
       {paragraphs.map((paragraph, index) => (
