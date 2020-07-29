@@ -35,7 +35,12 @@ const parseSpecification = (speficication?: Specification): string[] => {
   }
   const [value] = speficication.values
 
-  return value ? JSON.parse(value) : []
+  try {
+    return JSON.parse(value)
+  } catch (e) {
+    console.error('Failed to parse specification', value)
+    return []
+  }
 }
 
 interface Props {
