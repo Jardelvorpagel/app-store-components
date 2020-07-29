@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useMemo } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -51,12 +51,20 @@ const SpecificationList: FunctionComponent<Props> = ({
 
   const handles = useCssHandles(CSS_HANDLES)
 
-  const specification = getSpecification(
-    groupName,
-    specificationName,
-    product?.specificationGroups
+  const specification = useMemo(
+    () =>
+      getSpecification(
+        groupName,
+        specificationName,
+        product?.specificationGroups
+      ),
+    [groupName, specificationName, product]
   )
-  const parsedSpecifications = parseSpecification(specification)
+
+  const parsedSpecifications = useMemo(
+    () => parseSpecification(specification),
+    [specification]
+  )
 
   return (
     <ul className={`${handles.listContainer} list pl0 mt0 mb0`}>

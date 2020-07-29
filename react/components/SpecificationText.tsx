@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useMemo } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -18,11 +18,16 @@ const SpecificationText: FunctionComponent<Props> = ({
   const handles = useCssHandles(CSS_HANDLES)
   const { product } = useProduct()
 
-  const specification = getSpecification(
-    groupName,
-    specificationName,
-    product?.specificationGroups
+  const specification = useMemo(
+    () =>
+      getSpecification(
+        groupName,
+        specificationName,
+        product?.specificationGroups
+      ),
+    [groupName, specificationName, product]
   )
+
   const value = specification?.values[0] ?? ''
   const paragraphs = value.split('\n')
   return (
