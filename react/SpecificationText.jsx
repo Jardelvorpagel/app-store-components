@@ -1,3 +1,1 @@
-import SpecificationText from './components/SpecificationText'
-
-export default SpecificationText
+export { default } from './components/SpecificationText'

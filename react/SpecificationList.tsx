@@ -1,3 +1,1 @@
-import SpecificationList from './components/SpecificationList'
-
-export default SpecificationList
+export { default } from './components/SpecificationList'
