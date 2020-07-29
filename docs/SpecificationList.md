@@ -1,6 +1,6 @@
 ## Description
 
-`SpeficicationList` is a App Store Component that display the product specifications in a list format.
+`SpeficicationList` is an App Store Component that displays the product specifications in a list format.
 
 ## Table of Contents
 - [Usage](#usage)

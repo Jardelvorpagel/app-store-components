@@ -24,7 +24,7 @@ To use this app, you need to import in your dependencies on `manifest.json`.
 
 Then, you can add one of our app store component blocks into your app theme.
 
-For example, now you can change the behavior of `specification-list` block that is in the app store product page. See an example of how to configure:
+For example, now you can change the behavior of `specification-list` block that is on the app store product page. See an example of how to configure:
 
 ```json
 "specification-list": {
