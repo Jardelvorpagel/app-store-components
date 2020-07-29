@@ -1,0 +1,8 @@
+{
+  "specification-list": {
+    "component": "SpecificationList"
+  },
+  "specification-text": {
+    "component": "SpecificationText"
+  }
+}
