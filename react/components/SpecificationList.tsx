@@ -11,7 +11,7 @@ const CSS_HANDLES = [
 ] as const
 
 const Icon = () => (
-  <div style={{ width: "18px", height: "13px" }}>
+  <div style={{ width: '18px', height: '13px' }}>
     <svg
       width="18"
       height="13"
@@ -80,7 +80,7 @@ const SpecificationList: FunctionComponent<Props> = ({
           key={index}
           className={`${handles.listItemContainer} ${
             index !== 0 ? 'mt4' : ''
-            } flex items-center`}
+          } flex items-center`}
         >
           <Icon />
           <span className={`${handles.listItemContent} ml5 f5 c-muted-1`}>
