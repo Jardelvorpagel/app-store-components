@@ -31,11 +31,11 @@ const Icon = () => (
   </div>
 )
 
-const parseSpecification = (speficication?: Specification): string[] => {
-  if (!speficication) {
+const parseSpecification = (specification?: Specification): string[] => {
+  if (!specification) {
     return []
   }
-  const [value] = speficication.values
+  const [value] = specification.values
 
   try {
     return JSON.parse(value)
