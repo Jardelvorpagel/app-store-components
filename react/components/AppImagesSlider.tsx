@@ -5,9 +5,11 @@ import { useCssHandles } from 'vtex.css-handles'
 
 const CSS_HANDLES = ['appImage'] as const
 
+type SortingOrder = 'ASC' | 'DESC'
+
 const sortImages = (
   images: Image[],
-  order: 'ASC' | 'DESC',
+  order: SortingOrder,
   orderBy: keyof Image
 ) => {
   const compareFunction =
@@ -22,7 +24,7 @@ const sortImages = (
 
 interface Props {
   filterPattern?: string
-  order?: 'ASC' | 'DESC'
+  order?: SortingOrder
   orderBy?: keyof Image
   sliderLayoutProps?: any
 }
