@@ -55,7 +55,6 @@ const SpecificationList: FunctionComponent<Props> = ({
   specificationName = 'features',
 }) => {
   const { product } = useProduct()
-
   const handles = useCssHandles(CSS_HANDLES)
 
   const specification = useMemo(

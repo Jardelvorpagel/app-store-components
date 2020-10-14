@@ -4,5 +4,8 @@
   },
   "specification-text": {
     "component": "SpecificationText"
+  },
+  "app-images-slider": {
+    "component": "AppImagesSlider"
   }
 }
