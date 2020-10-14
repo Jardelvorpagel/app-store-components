@@ -62,5 +62,6 @@ To use this CSS API, you must add the `styles` builder and create an app styling
 Below we have a README for each component of this project that explains how to use them.
 - [SpecificationText](SpeficationText.md)
 - [SpecificationList](SpecificationList.md)
+- [AppImagesSlider](AppImagesSlider.md)
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
