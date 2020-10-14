@@ -20,10 +20,10 @@ const sortImages = (
 }
 
 interface Props {
-  filterPattern: string
-  order: 'ASC' | 'DESC'
-  orderBy: keyof Image
-  sliderLayoutProps: any
+  filterPattern?: string
+  order?: 'ASC' | 'DESC'
+  orderBy?: keyof Image
+  sliderLayoutProps?: any
 }
 
 const AppImagesSlider: FunctionComponent<Props> = ({
