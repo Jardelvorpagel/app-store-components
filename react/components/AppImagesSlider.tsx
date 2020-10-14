@@ -10,13 +10,14 @@ const sortImages = (
   order: 'ASC' | 'DESC',
   orderBy: keyof Image
 ) => {
-  const sortedImages = images.sort((imageA, imageB) =>
-    imageA[orderBy].localeCompare(imageB[orderBy])
-  )
-  const numberOfImages = sortedImages.length
-  return order === 'ASC'
-    ? sortedImages
-    : sortedImages.map((_, index) => sortedImages[numberOfImages - index - 1])
+  const compareFunction =
+    order === 'ASC'
+      ? (imageA: Image, imageB: Image) =>
+          imageA[orderBy].localeCompare(imageB[orderBy])
+      : (imageA: Image, imageB: Image) =>
+          imageB[orderBy].localeCompare(imageA[orderBy])
+
+  return images.sort(compareFunction)
 }
 
 interface Props {
