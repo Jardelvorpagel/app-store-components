@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useMemo } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
 import { SliderLayout } from 'vtex.slider-layout'
 import { useCssHandles } from 'vtex.css-handles'
@@ -38,10 +38,18 @@ const AppImagesSlider: FunctionComponent<Props> = ({
     selectedItem: { images },
   } = useProduct()
 
-  const filteredImages = images.filter(
-    ({ imageLabel }) => imageLabel.search(filterPattern) !== -1
+  const filteredImages = useMemo(
+    () =>
+      images.filter(
+        ({ imageLabel }) => imageLabel.search(filterPattern) !== -1
+      ),
+    [images, filterPattern]
   )
-  const sortedImages = sortImages(filteredImages, order, orderBy)
+
+  const sortedImages = useMemo(
+    () => sortImages(filteredImages, order, orderBy),
+    [filteredImages, order, orderBy]
+  )
 
   return (
     <SliderLayout {...sliderLayoutProps}>
