@@ -5,7 +5,10 @@ import { useCssHandles } from 'vtex.css-handles'
 
 const CSS_HANDLES = ['appImage'] as const
 
-type SortingOrder = 'ASC' | 'DESC'
+const enum SortingOrder {
+  ASCENDING = 'ASC',
+  DESCENDING = 'DESC',
+}
 
 const sortImages = (
   images: Image[],
@@ -13,7 +16,7 @@ const sortImages = (
   orderBy: keyof Image
 ) => {
   const compareFunction =
-    order === 'ASC'
+    order === SortingOrder.ASCENDING
       ? (imageA: Image, imageB: Image) =>
           imageA[orderBy].localeCompare(imageB[orderBy])
       : (imageA: Image, imageB: Image) =>
@@ -31,7 +34,7 @@ interface Props {
 
 const AppImagesSlider: FunctionComponent<Props> = ({
   filterPattern = '',
-  order = 'ASC',
+  order = SortingOrder.ASCENDING,
   orderBy = 'imageId',
   sliderLayoutProps = {},
 }) => {
