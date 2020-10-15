@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useMemo } from 'react'
-import useProduct from 'vtex.product-context/useProduct'
 import { useCssHandles } from 'vtex.css-handles'
+import useProduct from 'vtex.product-context/useProduct'
 
 import { getSpecification } from '../utils'
 

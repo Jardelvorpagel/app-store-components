@@ -4,5 +4,8 @@
   },
   "specification-text": {
     "component": "SpecificationText"
+  },
+  "login-logout": {
+    "component": "LoginLogout"
   }
 }
