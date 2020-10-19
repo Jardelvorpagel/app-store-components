@@ -1,20 +1,17 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react'
+import { LoginAccountDialog } from 'extensions.account-dialog'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
+
+import { deleteCookieByName, getCookieByName } from '../utils'
+
+const COOKIE_LOGIN_EXP = 'VtexAppsLoginExpInMs'
 
 interface Props {
   loginText: string
   logoutText: string
-}
-
-const WORKSPACE_MASTER = 'master'
-
-const getLoginURI = (account: string) => {
-  const currentWorkspace = window.__RUNTIME__?.workspace ?? ''
-  const workspace =
-    currentWorkspace !== WORKSPACE_MASTER ? `${currentWorkspace}--` : ''
-  return `${workspace}${account}.myvtex.com/admin/app-store/login?callbackURI=http://apps.vtex.com/_v/auth-callback?redirectURI=${window.location.href}`
 }
 
 declare global {
@@ -25,17 +22,29 @@ declare global {
   }
 }
 
+const isUserLoggedIn = () => {
+  const exp = getCookieByName(COOKIE_LOGIN_EXP)
+  return !!exp && parseInt(exp, 10) > Date.now()
+}
+
 const CSS_HANDLES = ['styledLoginLogout'] as const
 function LoginLogout({ loginText, logoutText }: Props) {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false)
+  const [loggedIn, setLoggedIn] = useState<boolean | null>(null)
+  const [startedLogin, setStartedLogin] = useState<boolean>(false)
   const handles = useCssHandles(CSS_HANDLES)
 
+  useEffect(() => {
+    const isLoggedIn = isUserLoggedIn()
+    setLoggedIn(isLoggedIn)
+  }, [])
+
   function logout() {
-    console.log('logging out')
+    setLoggedIn(false)
+    deleteCookieByName(COOKIE_LOGIN_EXP)
   }
 
   function login() {
-    console.log(getLoginURI('sandboxintegracao'))
+    setStartedLogin(true)
   }
 
   const onClick = (_: React.MouseEvent) => {
@@ -44,17 +53,26 @@ function LoginLogout({ loginText, logoutText }: Props) {
     } else {
       login()
     }
-    setLoggedIn(!loggedIn)
   }
+
+  const loginButtonText =
+    loggedIn !== null ? (loggedIn ? logoutText : loginText) : ''
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <span
-      className={`${handles.styledLoginLogout} w3 mh6 pv5 pointer t-body c-on-base pointer flex justify-between nowrap`}
-      onClick={onClick}
-    >
-      {loggedIn ? logoutText : loginText}
-    </span>
+    <Fragment>
+      <span
+        className={`${handles.styledLoginLogout} w3 mh6 pv5 pointer t-body c-on-base pointer flex justify-between nowrap`}
+        onClick={onClick}
+      >
+        {loginButtonText}
+      </span>
+
+      <LoginAccountDialog
+        isOpen={startedLogin}
+        onClose={() => setStartedLogin(false)}
+      />
+    </Fragment>
   )
 }
 
